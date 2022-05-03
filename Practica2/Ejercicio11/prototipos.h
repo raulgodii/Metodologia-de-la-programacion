@@ -1,0 +1,1 @@
+int suma_digitos(int* num, int n, int i, int sum);
