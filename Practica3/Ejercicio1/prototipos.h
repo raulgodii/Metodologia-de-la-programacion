@@ -1,0 +1,1 @@
+void crear_fichero_mayus(char *fichero_mayus, char *cad);
