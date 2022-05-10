@@ -57,9 +57,14 @@ int main(){
 
         switch (opcion)
         {
-        case 1: //Comprobar la existencia de un determinado libro en el stock buscando por su título
+        case 1:; //Comprobar la existencia de un determinado libro en el stock buscando por su título
             
-            if(buscar_titulo(&f, nombre)==1){
+            char nombre_libro[50];
+
+            printf("\nDime el nombre del libro que deseas buscar: ");
+            scanf("%s", nombre_libro);
+
+            if(buscar_titulo(&f, nombre, nombre_libro)==1){
                 printf("\n --> El libro ya existe\n");
             } else{
                 printf("\n --> El libro no existe \n");
@@ -73,13 +78,24 @@ int main(){
             introducir_libro(&f, nombre);
             break;
         case 3: //Contar el número de libros (títulos) diferentes que hay en el stock. Considera que no puede haber títulos de libros repetidos en el fichero
-
+            
+            printf("\n --> Existe %d libros diferentes\n", cont_libros(&f, nombre));
             break;
         case 4: //Listar los libros en el stock almacenándolos previamente en un vector dinámico
 
+            
             break;
         case 5: //Vender n unidades de un libro buscándolo por su título. Si hay menos de n unidades en el stock, se venderán solo las unidades disponibles
+            char nombre_libro[50];
 
+            printf("\nDime el nombre del libro que deseas buscar: ");
+            scanf("%s", nombre_libro);
+
+            if(buscar_titulo(&f, nombre, nombre_libro)==1){
+                vender_libro(&f, nombre, nombre_libro);
+            } else{
+                printf("\n --> El libro no existe \n");
+            }
 
             break;
         case 6: //Borrar aquellos registros con 0 unidades disponibles
