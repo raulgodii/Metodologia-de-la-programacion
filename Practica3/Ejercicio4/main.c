@@ -49,6 +49,8 @@ int main(){
                     printf("\n --> Fin del programa\n");
                     exit(-1);
                 }
+        } else{
+            fclose(f);
         }
 
     do{
@@ -85,14 +87,14 @@ int main(){
 
             
             break;
-        case 5: //Vender n unidades de un libro buscándolo por su título. Si hay menos de n unidades en el stock, se venderán solo las unidades disponibles
-            char nombre_libro[50];
+        case 5:; //Vender n unidades de un libro buscándolo por su título. Si hay menos de n unidades en el stock, se venderán solo las unidades disponibles
+            char nombre2_libro[50];
 
             printf("\nDime el nombre del libro que deseas buscar: ");
-            scanf("%s", nombre_libro);
+            scanf("%s", nombre2_libro);
 
-            if(buscar_titulo(&f, nombre, nombre_libro)==1){
-                vender_libro(&f, nombre, nombre_libro);
+            if(buscar_titulo(&f, nombre, nombre2_libro)==1){
+                vender_libro(&f, nombre, nombre2_libro);
             } else{
                 printf("\n --> El libro no existe \n");
             }
