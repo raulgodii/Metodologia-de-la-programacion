@@ -26,6 +26,10 @@ bool buscar_titulo(FILE** f, char* nombre, char* nombre_libro){
 
 void introducir_libro(FILE** f, char* nombre){
     *f=fopen(nombre, "a");
+    if(*f==NULL){
+        printf("\n //Error, no pudo abrirse el archivo");
+        exit(-1);
+    }
     char titulo[50];
     char autor[50];
     float precio;
