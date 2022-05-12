@@ -80,6 +80,11 @@ int cont_libros(FILE** f, char* nombre){
     int i=0;
     char titulo[50];
 
+    *f=fopen(nombre, "r");
+    if(*f==NULL){
+        printf("\n  --> Error, el fichero no pudo abrirse");
+    }
+
     while(!feof(*f)){
         if(fgetc(*f)=='\n'){
             i++;
@@ -89,6 +94,7 @@ int cont_libros(FILE** f, char* nombre){
             cont++;
         }
     }
+    fclose(*f);
     return cont;
 }
 

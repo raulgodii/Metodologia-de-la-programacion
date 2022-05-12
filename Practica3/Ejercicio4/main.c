@@ -82,7 +82,7 @@ int main(){
             break;
         case 3: //Contar el número de libros (títulos) diferentes que hay en el stock. Considera que no puede haber títulos de libros repetidos en el fichero
             
-            printf("\n --> Existe %d libros diferentes\n", cont_libros(&f, nombre));
+            printf("\n --> Existen %d libros diferentes\n", cont_libros(&f, nombre));
             break;
         case 4: //Listar los libros en el stock almacenándolos previamente en un vector dinámico
 
