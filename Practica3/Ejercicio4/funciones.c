@@ -104,11 +104,13 @@ void vender_libro(FILE** f, char* nombre, char* nombre_libro){
     *f=fopen(nombre, "r");
     if(*f==NULL){
         printf("\n  --> Error, el fichero no pudo abrirse");
+        return;
     }
 
     while(!feof(*f)){
         int n = 0;
         fgets(nombre_leido, 50, *f);
+        printf("\n //////%s", nombre_leido);
             if (strcmp(nombre_leido, nombre_libro)==0){
                 while(cont<3){
                     if(fgetc(*f)=='\n'){
@@ -192,6 +194,6 @@ void vender_libro(FILE** f, char* nombre, char* nombre_libro){
                     }
                 }
             }
-        fclose(*f);
-    }    
+    }
+    fclose(*f);    
 }
