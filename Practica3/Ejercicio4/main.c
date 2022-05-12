@@ -64,7 +64,8 @@ int main(){
             char nombre_libro[50];
 
             printf("\nDime el nombre del libro que deseas buscar: ");
-            scanf("%s", nombre_libro);
+            fgetc(stdin);
+            fgets(nombre_libro, 50, stdin);
 
             if(buscar_titulo(&f, nombre, nombre_libro)==1){
                 printf("\n --> El libro ya existe\n");
@@ -91,7 +92,8 @@ int main(){
             char nombre2_libro[50];
 
             printf("\nDime el nombre del libro que deseas buscar: ");
-            scanf("%s", nombre2_libro);
+            fgetc(stdin);
+            fgets(nombre2_libro, 50, stdin);
 
             if(buscar_titulo(&f, nombre, nombre2_libro)==1){
                 vender_libro(&f, nombre, nombre2_libro);

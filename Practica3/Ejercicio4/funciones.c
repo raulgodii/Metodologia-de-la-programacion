@@ -10,11 +10,15 @@ void imprimir_menu(){
 
 bool buscar_titulo(FILE** f, char* nombre, char* nombre_libro){
     *f=fopen(nombre, "r");
-
+/*
+    if(nombre_libro[strlen(nombre_libro)-1]=='\n'){
+        nombre_libro[strlen(nombre_libro)-1]='\0';
+    }
+*/
     char nombre_leido [50];
     
     while(!feof(*f)){
-        fscanf(*f, "%s", nombre_leido);
+        fgets(nombre_leido, 50, *f);
             if (strcmp(nombre_libro, nombre_leido)==0){
                 return 1;
             }
@@ -25,11 +29,7 @@ bool buscar_titulo(FILE** f, char* nombre, char* nombre_libro){
 }
 
 void introducir_libro(FILE** f, char* nombre){
-    *f=fopen(nombre, "a");
-    if(*f==NULL){
-        printf("\n //Error, no pudo abrirse el archivo");
-        exit(-1);
-    }
+
     char titulo[50];
     char autor[50];
     float precio;
@@ -52,11 +52,11 @@ void introducir_libro(FILE** f, char* nombre){
     printf("\nIntroduce las unidades disponibles: ");
     scanf("%d", &unidades);
 
-    printf("\nTitulo: %s", titulo);
-    printf("\nAutor: %s", autor);
-    printf("\nTitulo: %s", titulo);
-    printf("\nTitulo: %s", titulo);
-    
+    *f=fopen(nombre, "a");
+    if(*f==NULL){
+        printf("\n //Error, no pudo abrirse el archivo");
+        exit(-1);
+    }
 
     fprintf(*f, "%s", titulo);
     fprintf(*f, "\n");
