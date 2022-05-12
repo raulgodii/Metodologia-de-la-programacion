@@ -100,16 +100,21 @@ int cont_libros(FILE** f, char* nombre){
 
 void vender_libro(FILE** f, char* nombre, char* nombre_libro){
     int cont=0;
+    char nombre_leido[50];
+    *f=fopen(nombre, "r");
+    if(*f==NULL){
+        printf("\n  --> Error, el fichero no pudo abrirse");
+    }
+
     while(!feof(*f)){
         int n = 0;
-        *f=fopen(nombre, "r");
-        fscanf(*f, "%s", nombre_libro);
-            if (strcmp(nombre_libro, nombre_libro)==0){
-                while(cont<4){
+        fgets(nombre_leido, 50, *f);
+            if (strcmp(nombre_leido, nombre_libro)==0){
+                while(cont<3){
                     if(fgetc(*f)=='\n'){
                         cont++;
                     }
-                    if(cont==4){
+                    if(cont==3){
                         float precio;
                         int unidades;
                         int u_vendidas;
