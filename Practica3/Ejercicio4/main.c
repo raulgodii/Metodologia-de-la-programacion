@@ -47,6 +47,7 @@ int main(){
                     fclose(f);
                 } else {
                     printf("\n --> Fin del programa\n");
+                    fclose(f);
                     exit(-1);
                 }
         } else{
