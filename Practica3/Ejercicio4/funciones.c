@@ -12,13 +12,28 @@ bool buscar_titulo(FILE** f, char* nombre, char* nombre_libro){
     *f=fopen(nombre, "r");
 
     char nombre_leido [50];
+
+    fgets(nombre_leido, 50, *f);
     
     while(!feof(*f)){
-        fgets(nombre_leido, 50, *f);
+        int cont=0;
+        int n;
+
             if (strcmp(nombre_libro, nombre_leido)==0){
                 fclose(*f);
                 return 1;
             }
+
+            while(cont<6){
+                n=fgetc(*f);
+                if(n==EOF){
+                    cont=100;
+                }
+                if(n=='\n'){
+                    cont++;
+                }
+            }
+        fgets(nombre_leido, 50, *f);
     }
 
     fclose(*f);
