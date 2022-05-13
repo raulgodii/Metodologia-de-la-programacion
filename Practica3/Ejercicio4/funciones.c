@@ -10,11 +10,7 @@ void imprimir_menu(){
 
 bool buscar_titulo(FILE** f, char* nombre, char* nombre_libro){
     *f=fopen(nombre, "r");
-/*
-    if(nombre_libro[strlen(nombre_libro)-1]=='\n'){
-        nombre_libro[strlen(nombre_libro)-1]='\0';
-    }
-*/
+
     char nombre_leido [50];
     
     while(!feof(*f)){
@@ -143,21 +139,27 @@ void vender_libro(FILE** f, char* nombre, char* nombre_libro){
                         aux=fopen("aux.txt", "a");
                         if(aux==NULL){
                             printf("\n  Error, el fichero auxiliar no pudo abrirse");
+                            fclose(*f);
+                            fclose(aux);
+                            exit(-1);
                         }
                         
                         rewind(*f); //para poner el cursor en el principio
+
+                        char titulo[50];
+                        int n;
+                        fgets(titulo, 50, *f);
+                        n=fgetc(*f);
+                        
                         while(!feof(*f)){
 
                             
-                            char titulo[50];
+
                             char autor[50];
                             float precio;
                             int u;
 
-                            int n;
 
-                            fgets(titulo, 50, *f);
-                            n=fgetc(*f);
                             if(strcmp(titulo,nombre_libro)==0){
                                 
                                 
@@ -166,21 +168,15 @@ void vender_libro(FILE** f, char* nombre, char* nombre_libro){
 
                                 
                                 fscanf(*f, "%f", &precio);
-                                fscanf(*f, "%u", &u);
+                                fscanf(*f, "%d", &u);
                                 n=fgetc(*f);
                                 n=fgetc(*f);
                                 n=fgetc(*f);
-                                n=fgetc(*f);
+
                                 
 
                                 fprintf(aux, "%s", titulo);
                                 fprintf(aux, "\n");
-
-                                printf("\n      -Titulo: %s", titulo);
-                                printf("\n      -Autor: %s", autor);
-                                printf("\n      -Precio: %f", precio);
-                                printf("\n      -Unidades: %d", unidades);
-
 
                                 fprintf(aux, "%s", autor);
                                 fprintf(aux, "\n");
@@ -189,7 +185,10 @@ void vender_libro(FILE** f, char* nombre, char* nombre_libro){
                                 fprintf(aux, "   ");
 
                                 fprintf(aux, "%d", unidades);
-                                fprintf(aux, "\n\n\n\n");
+                                fprintf(aux, "\n\n\n");
+
+                                fgets(titulo, 50, *f);
+                                n=fgetc(*f);
                             } else{
 
                             fgets(autor, 50, *f);
@@ -197,8 +196,7 @@ void vender_libro(FILE** f, char* nombre, char* nombre_libro){
 
                                 
                             fscanf(*f, "%f", &precio);
-                            fscanf(*f, "%u", &u);
-                            n=fgetc(*f);
+                            fscanf(*f, "%d", &u);
                             n=fgetc(*f);
                             n=fgetc(*f);
                             n=fgetc(*f);
@@ -215,6 +213,9 @@ void vender_libro(FILE** f, char* nombre, char* nombre_libro){
 
                             fprintf(aux, "%d", u);
                             fprintf(aux, "\n\n\n");
+
+                            fgets(titulo, 50, *f);
+                            n=fgetc(*f);
                             }
                         }
                         remove(nombre);
