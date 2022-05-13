@@ -1,28 +1,15 @@
-hola
+titulo
 
-que
+autor
 
-4.000000   5
-
-
-miguel angel
-
-ddd
-
-3.000000   4
+5.000000   0
 
 
-tu puta madre
-
-vale
-
-45.000000   6
 
 
-nerea ruiz
 
-villegas
 
-77.000000   4
+
+5.000000   32664
 
 
