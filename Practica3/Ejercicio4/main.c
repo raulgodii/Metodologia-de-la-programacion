@@ -104,7 +104,7 @@ int main(){
 
             break;
         case 6: //Borrar aquellos registros con 0 unidades disponibles
-
+                borrar_libro(&f, nombre);
             break;
         case 7: //Salir
             break;
