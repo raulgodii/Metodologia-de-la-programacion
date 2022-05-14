@@ -105,6 +105,7 @@ int main(){
             break;
         case 6: //Borrar aquellos registros con 0 unidades disponibles
                 borrar_libro(&f, nombre);
+                printf("\n  --> Libros actualizados con exito\n");
             break;
         case 7: //Salir
             break;
