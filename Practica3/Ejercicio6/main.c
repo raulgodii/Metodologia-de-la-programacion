@@ -22,6 +22,10 @@ int main(int argc, char** argv){
 
     vec = reservar_vector(nele);
 
+    rellenar_vector(nombre, nele, vec);
+
+    int suma_pares =  suma_pares(vec, nele);
+
 
     return 0;
 }
