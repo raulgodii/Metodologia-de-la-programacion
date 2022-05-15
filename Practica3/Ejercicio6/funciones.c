@@ -23,7 +23,7 @@ int contar_registros(char* nombre){
     return nres;
 }
 
-int* reservarS_vector(int nele){
+int* reservar_vector(int nele){
     int* vec;
     vec = (int*)calloc(nele, sizeof(int));
     if(vec==NULL){
@@ -31,4 +31,27 @@ int* reservarS_vector(int nele){
         exit(-1);
     }
     return vec;
+}
+
+void rellenar_vector(char* nombre, int nele, int* vec){
+    FILE* f;
+    f=fopen(nombre, "rb");
+    if(f==NULL){
+        printf("\n Error, no pudo abrirse el fichero\n");
+        fclose(f);
+        exit(-1);
+    }
+
+    fread(vec, sizeof(int), nele, f);
+
+}
+
+int suma_pares(int* vec, int nele){
+    int suma=0;
+    for(int i=0; i<nele; i++){
+        if(v[i]%2==0){
+            suma+=v[i];
+        }
+    }
+    return suma;
 }
