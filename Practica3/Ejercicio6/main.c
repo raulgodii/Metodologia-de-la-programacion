@@ -10,7 +10,7 @@ media de los números pares. El nombre del fichero se le preguntará al usuario.
 
 int main(int argc, char** argv){
     if(argc!=2){
-        printf("\n Error, sintaxis: nombre.fichero");
+        printf("\n Error, sintaxis: nombre.fichero\n");
         exit(-1);
     }
 
@@ -24,8 +24,11 @@ int main(int argc, char** argv){
 
     rellenar_vector(nombre, nele, vec);
 
-    int suma_pares =  suma_pares(vec, nele);
+    float media =  media_pares(vec, nele);
 
+    printf("\n La media de los pares es igual a: %f \n", media);
+
+    free(vec);
 
     return 0;
 }

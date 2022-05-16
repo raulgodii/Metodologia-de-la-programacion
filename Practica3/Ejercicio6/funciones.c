@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <stdlib.h>
 
 int contar_registros(char* nombre){
     FILE* f;
@@ -46,12 +48,15 @@ void rellenar_vector(char* nombre, int nele, int* vec){
 
 }
 
-int suma_pares(int* vec, int nele){
-    int suma=0;
+float media_pares(int* vec, int nele){
+    float suma=0;
+    float cont=0;
     for(int i=0; i<nele; i++){
-        if(v[i]%2==0){
-            suma+=v[i];
+        printf("\n Vec[%d]=%d", i, vec[i]);
+        if(vec[i]%2==0){
+            suma+=vec[i];
+            cont++;
         }
     }
-    return suma;
+    return suma/cont;
 }
