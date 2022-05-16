@@ -76,7 +76,7 @@ int main(int argc, char** argv){
             vender_libros(argv[1]);
             break;
         case 6: //borrar libros con 0 unidades
-
+            borrar_libros(argv[1]);
             break;
         case 7:
 

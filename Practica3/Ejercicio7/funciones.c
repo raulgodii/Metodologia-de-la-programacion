@@ -214,3 +214,44 @@ void vender_libros(char* nombre){
     printf("\n  --> Unidades actualizadas\n");
 
 }
+
+void borrar_libros(char* nombre){
+    FILE* f;
+    FILE* a;
+
+    struct libro aux;
+
+    f=fopen(nombre, "rb");
+    if(f==NULL){
+        printf("\n  --> Error, el fichero no pudo abrirse\n");
+        exit(-1);
+    }
+
+    a=fopen("aux.txt", "wb");
+    if(a==NULL){
+        printf("\n  --> Error, el fichero no pudo abrirse\n");
+        fclose(f);
+        exit(-1);
+    }
+
+    fread(&aux, sizeof(struct libro), 1, f);
+
+    while(!feof(f)){
+
+        if(aux.unidades!=0){
+            fwrite(&aux, sizeof(struct libro), 1, a);
+        }
+
+        fread(&aux, sizeof(struct libro), 1, f);
+
+    }
+
+    remove(nombre);
+    rename("aux.txt", nombre);
+
+    fclose(a);
+
+    printf("\n  --> Unidades actualizadas\n");
+
+
+}
