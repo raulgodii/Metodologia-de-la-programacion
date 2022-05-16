@@ -11,6 +11,10 @@ void existe_fichero(char* nombre);
 
 void imprimir_menu();
 
-int comprobar_existencia(char* nombre);
+int comprobar_existencia(char* nombre, char* titulo);
+
+void anadir_libro(char* nombre);
+
+int contar_registros(char* nombre);
 
 #endif

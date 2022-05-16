@@ -53,17 +53,13 @@ void imprimir_menu(){
     printf("\n  7. Salir");
 }
 
-int comprobar_existencia(char* nombre){
+int comprobar_existencia(char* nombre, char* titulo){
     FILE* f;
     f=fopen(nombre, "rb");
     if(f==NULL){
         printf("\n  --> Error, el fichero no pudo abrirse\n");
         exit(-1);
     }
-
-    printf("\n  Introduce el numero titulo que desea buscar: ");
-    char titulo[100];
-    scanf("%s", titulo);
     
     struct libro auxiliar;
     while(fread(&auxiliar, sizeof(struct libro), 1, f)==1){
@@ -75,24 +71,14 @@ int comprobar_existencia(char* nombre){
     return 0;
 }
 
-void anadir_libro(argv[1], libro){
+void anadir_libro(char* nombre){
     FILE* f;
-    f=fopen(nombre, "ab");
-    if(f==NULL){
-        printf("\n  --> Error, el fichero no pudo abrirse\n");
-        exit(-1);
-    }
-
-    if(comprobar_existencia(argv[1])==1){
-        printf("\n  --> El libro ya existe\n");
-        return;
-    }
 
     struct libro aux;
 
     printf("\n  -Introduce el titulo: ");
     scanf("%s", aux.titulo);
-    if(comprobar_existencia(aux.titulo)==1){
+    if(comprobar_existencia(nombre, aux.titulo)==1){
         printf("\n  --> El libro ya existe\n");
         return;
     }
@@ -101,8 +87,40 @@ void anadir_libro(argv[1], libro){
     scanf("%s", aux.autor);
 
     printf("\n  -Introduce el precio: ");
-    scanf("%f", aux.precio);
+    scanf("%f", &aux.precio);
 
     printf("\n  -Introduce : ");
-    scanf("%d", aux.unidades);
+    scanf("%d", &aux.unidades);
+
+    f=fopen(nombre, "ab");
+    if(f==NULL){
+        printf("\n  --> Error, el fichero no pudo abrirse\n");
+        exit(-1);
+    }
+
+    fwrite(&aux, sizeof(struct libro), 1, f);
+
+    fclose(f);
+}
+
+int contar_registros(char* nombre){
+
+    long tam;
+    FILE* f;
+
+    f=fopen(nombre, "rb");
+    if(f==NULL){
+        printf("\n  --> Error, el fichero no pudo abrirse\n");
+        exit(-1);
+    }
+
+    if(fseek(f, 0L, SEEK_END)){
+        printf("\n  --> Error, no se ha podido trabajar con el fichero\n");
+        fclose(f);
+        exit(-1);
+    }
+
+    tam=ftell(f);
+    fclose(f);
+    return tam/sizeof(struct libro);
 }

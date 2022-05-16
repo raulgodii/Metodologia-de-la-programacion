@@ -45,7 +45,12 @@ int main(int argc, char** argv){
         switch (opcion_menu)
         {
         case 1: //comprobar existencia
-            if(comprobar_existencia(argv[1])==1){
+
+            printf("\n  Introduce el numero titulo que desea buscar: ");
+            char titulo[100];
+            scanf("%s", titulo);
+
+            if(comprobar_existencia(argv[1], titulo)==1){
                 printf("\n  --> El libro ya existe\n");
             } else {
                 printf("\n  --> El libro no existe\n");
@@ -55,7 +60,7 @@ int main(int argc, char** argv){
             anadir_libro(argv[1]);
             break;
         case 3: //contar libros
-
+            printf("\n  --> Hay %d libros en stock\n", contar_registros(argv[1]));
             break;
         case 4:
 
