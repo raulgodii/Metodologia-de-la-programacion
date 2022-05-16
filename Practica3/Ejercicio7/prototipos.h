@@ -21,4 +21,5 @@ struct libro* reservar_memoria(int nele);
 
 void listar_libros(struct libro* vec, char* nombre, int nele);
 
+void vender_libros(char* nombre);
 #endif

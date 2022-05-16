@@ -156,3 +156,51 @@ void listar_libros(struct libro* vec, char* nombre, int nele){
     }
     fclose(f);
 }
+
+void vender_libros(char* nombre){
+
+    char titulo[100];
+    int u;
+    printf("\n  Introduce el titulo del libro que deseas vender: ");
+    fscanf("%s", titulo);
+    printf("\n  Introduce las unidades que deseas vender: ");
+    fscanf("%d", &u);
+
+    if(comprobar_existencia(nombre, titulo)==1){
+        printf("\n  --> El libro ya existe\n");
+        return;
+    }
+
+    FILE* f, a;
+    struct libro aux;
+
+    f=fopen(nombre, "rb");
+    if(f==NULL){
+        printf("\n  --> Error, el fichero no pudo abrirse\n");
+        exit(-1);
+    }
+
+    a=fopen("aux.txt", "wb");
+    if(a==NULL){
+        printf("\n  --> Error, el fichero no pudo abrirse\n");
+        fclose(f);
+        exit(-1);
+    }
+
+    while(!feof(f)){
+        fread(&aux, sizeof(struct libro), 1, f);
+
+        if(strcmp(titulo, aux.titulo)==0){
+            aux.unidades = aux.unidades - u;
+            if(aux.unidades<0){
+                aux.unidades = 0;
+            }
+        }
+
+        fwrite(&aux, sizeof(struct libro), 1, a);
+    }
+
+    fclose(f);
+    fclose(a);
+
+}
