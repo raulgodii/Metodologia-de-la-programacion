@@ -62,13 +62,20 @@ int main(int argc, char** argv){
         case 3: //contar libros
             printf("\n  --> Hay %d libros en stock\n", contar_registros(argv[1]));
             break;
-        case 4:
+        case 4:; //listar todos los elementos
+            struct libro* vec;
+            int nele = contar_registros(argv[1]);
+            vec = reservar_memoria(nele);
+
+            listar_libros(vec, argv[1], nele);
+
+            free(vec);
 
             break;
-        case 5:
-
+        case 5: //vender libros
+            
             break;
-        case 6:
+        case 6: //borrar libros con 0 unidades
 
             break;
         case 7:
