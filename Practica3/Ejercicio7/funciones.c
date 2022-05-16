@@ -124,3 +124,35 @@ int contar_registros(char* nombre){
     fclose(f);
     return tam/sizeof(struct libro);
 }
+
+struct libro* reservar_memoria(int nele){
+    struct libro* aux;
+    aux = (struct libro*)malloc(nele*sizeof(struct libro));
+    
+    if(aux==NULL){
+        printf("\n  --> Error, la memoria no pudo ser reservada\n");
+        exit(-1);
+    }
+}
+
+void listar_libros(struct libro* vec, char* nombre, int nele){
+    FILE* f;
+
+    f=fopen(nombre, "rb");
+    if(f==NULL){
+        printf("\n  --> Error, el fichero no pudo abrirse\n");
+        exit(-1);
+    }
+
+    fread(vec, sizeof(struct libro), nele, f);
+
+    for(int i=0; i<nele; i++){
+        printf("\n  -LIBRO %d:", i);
+        printf("\n  Titulo: %s", vec[i].titulo);
+        printf("\n  Autor: %s", vec[i].autor);
+        printf("\n  Precio: %f", vec[i].precio);
+        printf("\n  Unidades: %d", vec[i].unidades);
+        printf("\n");
+    }
+    fclose(f);
+}

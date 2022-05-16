@@ -17,4 +17,8 @@ void anadir_libro(char* nombre);
 
 int contar_registros(char* nombre);
 
+struct libro* reservar_memoria(int nele);
+
+void listar_libros(struct libro* vec, char* nombre, int nele);
+
 #endif
