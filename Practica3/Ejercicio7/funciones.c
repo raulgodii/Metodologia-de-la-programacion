@@ -162,16 +162,19 @@ void vender_libros(char* nombre){
     char titulo[100];
     int u;
     printf("\n  Introduce el titulo del libro que deseas vender: ");
-    fscanf("%s", titulo);
-    printf("\n  Introduce las unidades que deseas vender: ");
-    fscanf("%d", &u);
+    scanf("%s", titulo);
 
-    if(comprobar_existencia(nombre, titulo)==1){
-        printf("\n  --> El libro ya existe\n");
+    if(comprobar_existencia(nombre, titulo)==0){
+        printf("\n  --> El libro no existe\n");
         return;
     }
 
-    FILE* f, a;
+    printf("\n  Introduce las unidades que deseas vender: ");
+    scanf("%d", &u);
+
+    FILE* f;
+    FILE* a;
+
     struct libro aux;
 
     f=fopen(nombre, "rb");
@@ -187,8 +190,9 @@ void vender_libros(char* nombre){
         exit(-1);
     }
 
+    fread(&aux, sizeof(struct libro), 1, f);
+
     while(!feof(f)){
-        fread(&aux, sizeof(struct libro), 1, f);
 
         if(strcmp(titulo, aux.titulo)==0){
             aux.unidades = aux.unidades - u;
@@ -198,9 +202,15 @@ void vender_libros(char* nombre){
         }
 
         fwrite(&aux, sizeof(struct libro), 1, a);
+
+        fread(&aux, sizeof(struct libro), 1, f);
     }
 
-    fclose(f);
+    remove(nombre);
+    rename("aux.txt", nombre);
+
     fclose(a);
+
+    printf("\n  --> Unidades actualizadas\n");
 
 }
