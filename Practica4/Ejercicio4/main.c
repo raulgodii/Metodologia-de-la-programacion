@@ -52,21 +52,54 @@ función).
 #include <stdlib.h>
 
 void main(){
-    int opcion;
+    int opcion, encontrado, c, e, x;
     imprimir_menu();
     printf("\n---> ");
     scanf("%d", &opcion);
 
+    struct nodo* cabeza = NULL;
+
     do{
-        imprimir_menu();
-        swtich (opcion){
+        switch (opcion){
             case 1: //comprobar si existe un monomio con un determinado exponente
+                printf("\n Introduce el exponente a buscar: ");
+                scanf("%d", &e);
+                encontrado=buscar_monomio(cabeza, e);
+
+                if(encontrado==1){
+                    printf("\n El monomio ya existe");
+                } 
+
+                if(encontrado==0){
+                    printf("\n El monomio no existe");
+                }
             break;
 
             case 2: //insertar nuevo monomio (sin repetir exponente)
+                printf("\n Introduce el exponente a insertar: ");
+                scanf("%d", &e);
+
+                // Comprueba si el elemento ya existe 
+               encontrado=buscar_monomio(cabeza, e);
+
+                if(encontrado==1){
+                    printf("\n El monomio ya existe");
+                } 
+
+                if(encontrado==0){
+                    printf("\n Introduce el coeficiente: ");
+                    scanf("%d", &c);
+                    insertar_monomio(&cabeza, e, c);
+                    printf("\n Elemento insertado");
+                }
+    
             break;
 
-            case 3: //evaluar el polinomio en un valor de x
+            case 3:; //evaluar el polinomio en un valor de x
+                printf("\n Dime el valor de x: ");
+                scanf("%d", &x);
+
+                evaluar_polinomio(cabeza, x);
             break;
 
             case 4: //eliminar si existe el monomio de exponente e
@@ -76,6 +109,8 @@ void main(){
             break;
 
             case 6: //salir
+                printf("\n  --> Fin del programa\n\n");
+                exit(-1);
             break;
 
             default:
@@ -86,7 +121,7 @@ void main(){
         printf("\n---> ");
         scanf("%d", &opcion);
 
-    } while (opcion!6);
+    } while (opcion!=6);
 
     printf("\n  --> Fin del programa\n\n");
 }
