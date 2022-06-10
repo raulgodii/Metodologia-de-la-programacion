@@ -17,7 +17,9 @@ struct alumno* reservar_vector(int nele);
 
 void rellenar_vector(struct alumno vec[], int nele, char nombre_fichero[]);
 
-void ordenar_vector(struct alumno vec[], int nele);
+int compara_nombre(const void* x_void, const void* y_void);
+
+int compara_nota(const void* x_void, const void* y_void);
 
 void imprimir_vector(struct alumno vec[], int nele);
 

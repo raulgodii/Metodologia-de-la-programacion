@@ -81,28 +81,18 @@ void rellenar_vector(struct alumno vec[], int nele, char nombre_fichero[]){
     fclose(f);
 }
 
-void ordenar_vector(struct alumno vec[], int nele){
+int compara_nombre(const void* x_void, const void* y_void){
+    struct alumno* x = (struct alumno*)x_void;
+    struct alumno* y = (struct alumno*)y_void;
 
-    struct alumno aux;
+    return strcmp(x->nombre, y->nombre);
+}
 
-    for(int i=0; i<nele; i++){
-        for(int j=i+1; j<nele; j++){
-            if(vec[j].nota<vec[i].nota){
+int compara_nota(const void* x_void, const void* y_void){
+    struct alumno* x = (struct alumno*)x_void;
+    struct alumno* y = (struct alumno*)y_void;
 
-                strcpy(aux.nombre, vec[i].nombre);
-                aux.DNI = vec[i].DNI;
-                aux.nota = vec[i].nota;
-
-                strcpy(vec[i].nombre, vec[j].nombre);
-                vec[i].DNI = vec[j].DNI;
-                vec[i].nota = vec[j].nota;
-
-                strcpy(vec[j].nombre, aux.nombre);
-                vec[j].DNI = aux.DNI;
-                vec[j].nota = aux.nota;
-            }
-        }
-    }
+    return ((x->nota)-(y->nota));
 }
 
 void imprimir_vector(struct alumno vec[], int nele){

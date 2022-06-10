@@ -21,12 +21,54 @@ un puntero a una función de comparación.
 
 #include "prototipos.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 void main(int argc, char** argv){
 
 
-    if(argc!=2){
+    if(argc!=3){
         printf("\n Error, sintaxis: entero nombre.fichero");
         exit(-1);
     }
+
+    char nombre_fichero [50];
+    int sentido;
+
+    strcpy(nombre_fichero, argv[2]);
+    sentido = atoi(argv[1]);
+    printf("\n %d", sentido);
+
+    if(sentido!=1 && sentido!=2){
+        printf("\n Error, el sentido tiene que ser 1(ascendente) o 2 (descendente)");
+        exit(-1);
+    }
+
+    //Comprobamos existencia fichero
+    existe_fichero(nombre_fichero);
+
+    //Rellenamos el fichero
+    rellenar_fichero(nombre_fichero);
+
+    //Creamos el vector dinamico
+    int nele = contar_registros(nombre_fichero);
+    struct alumno* vec = reservar_vector(nele);
+    
+    //Rellenamos el vector
+    rellenar_vector(vec, nele, nombre_fichero);
+
+    //Ordenamos el vector
+    if(sentido == 1){ //ascendente
+        ordenar_vector(vec, nele, &ascendente);
+    }
+
+    if(sentido == 2){ //descendente
+        ordenar_vector(vec, nele, &descendente);
+    }
+    
+
+    //Imprimimos el vector
+    imprimir_vector(vec, nele);
+
+    free(vec);
 }
