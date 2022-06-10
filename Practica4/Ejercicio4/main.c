@@ -80,7 +80,7 @@ void main(){
                 scanf("%d", &e);
 
                 // Comprueba si el elemento ya existe 
-               encontrado=buscar_monomio(cabeza, e);
+                encontrado=buscar_monomio(cabeza, e);
 
                 if(encontrado==1){
                     printf("\n El monomio ya existe");
@@ -103,9 +103,24 @@ void main(){
             break;
 
             case 4: //eliminar si existe el monomio de exponente e
+                printf("\n Introduce el exponente que deseas eliminar: ");
+                scanf("%d", &e);
+
+                // Comprueba si el exponente existe 
+                encontrado=buscar_monomio(cabeza, e);
+
+                if(encontrado==1){
+                    eliminar_monomio(&cabeza, e);
+                    printf("\n Monomio borrado");
+                } 
+
+                if(encontrado==0){
+                    printf("\n El monomio no existe");
+                }
             break;
 
             case 5: //imprimir polinomio
+                imprimir_monomio(cabeza);
             break;
 
             case 6: //salir

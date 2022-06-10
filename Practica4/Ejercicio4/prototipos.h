@@ -17,4 +17,8 @@ void insertar_monomio(struct nodo** cabeza, int e, int c);
 
 void evaluar_polinomio(struct nodo* cabeza, int x);
 
+void eliminar_monomio(struct nodo** cabeza, int e);
+
+void imprimir_monomio(struct nodo* cabeza);
+
 #endif

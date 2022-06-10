@@ -57,3 +57,35 @@ void evaluar_polinomio(struct nodo* cabeza, int x){
 
     printf("\n El valor del polinomio en %d es: %d", x, sum);
 }
+
+void eliminar_monomio(struct nodo** cabeza, int e){
+
+    struct nodo *ant = NULL; // almacena el elemento anterior al que se borra
+    struct nodo *aux = NULL; // almacena el elemento a borrar 
+    
+    aux = *cabeza;
+    // Busqueda del elemento a borrar y su anterior 
+    while (aux->e != e){
+        ant = aux;
+        aux = aux->sig;
+    }
+    
+    if (aux == *cabeza){ // el elemento a borrar es la cabeza 
+        *cabeza = aux->sig; // la nueva cabeza es el siguiente 
+        free(aux); // se libera la antigua cabeza 
+    }
+    else{ // El elemento a borrar no es la cabeza 
+        ant->sig = aux->sig; // Se enlaza el anterior con el siguiente 
+        free(aux); // se libera el nodo a borrar 
+    }
+}
+
+void imprimir_monomio(struct nodo* cabeza){
+    struct nodo* aux=cabeza;
+
+    printf("\n");
+    while(aux!=NULL){
+        printf(" %dx^%d +", aux->c, aux->e);
+        aux=aux->sig;
+    }
+}
