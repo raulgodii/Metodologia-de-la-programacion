@@ -37,7 +37,7 @@ int ordena_salario(const void* x_void, const void* y_void){
     int xx = x->salarioBruto - (x->salarioBruto*(x->retenciones/100));
     int yy = y->salarioBruto - (y->salarioBruto*(y->retenciones/100));
 
-    return yy - xx;
+    return xx - yy;
 }
 
 void imprimir_vector_recursivo(struct nomina* vec, int nele, int i){
